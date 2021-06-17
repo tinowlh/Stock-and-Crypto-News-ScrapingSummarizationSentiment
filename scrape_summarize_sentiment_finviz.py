@@ -83,7 +83,7 @@ def scrape_and_process(news_data):
                 soup = BeautifulSoup(response, 'html.parser')
                 results = soup.find_all('p')
                 text = [res.text for res in results]
-                words = ' '.join(text).split(' ')[:350]
+                words = ' '.join(text).split(' ')[:300]
                 article = ' '.join(words)
                 article = article.replace(u'\xa0', u' ')
                 article = article.replace('\\', '')
@@ -155,4 +155,5 @@ def recalculate_sentiment_score(df):
 
 final_output = output.apply(recalculate_sentiment_score, axis=1)
 
-final_output.to_excel('final_output.xlsx', index=False)
+final_output.to_csv('final_output.csv', index=False)
+# final_output.to_excel('final_output.xlsx', index=False)
